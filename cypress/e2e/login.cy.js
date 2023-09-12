@@ -5,7 +5,7 @@ describe('Login - Teste da Api ServeRest', () => {
             method: 'POST',
             url: 'http://localhost:3000/login',
             body: {
-                "email": "xandibrbr@yahoo.com.br",
+                "email": "fulano@qa.com",
                 "password": "teste"
               }
         }).then((response) => { 

@@ -1,9 +1,16 @@
 const { it } = require("mocha");
+import contrato from '../contracts/produtos.contract'
 
 describe('Teste da Funcionalidade Produtos', () => {
      let token
     before(() => {
         cy.token('xandibrbr@yahoo.com.br', 'teste').then(tkn =>{ token = tkn})
+    });
+
+    it('Deve validar contrato de produtos', () => {
+        cy.request('produtos').then(response =>{
+            return contrato.validateAsync(response.body)
+        })
     });
 
     it('Listar Produtos', () => {
@@ -59,10 +66,10 @@ describe('Teste da Funcionalidade Produtos', () => {
                 headers: {authorization: token},
                 body:
                 {
-                    "nome": "Produto EBAC 48856296",
+                    "nome": "Produto EBAC 27045361",
                     "preco": 470,
                     "descricao": "Produto Editado",
-                    "quantidade": 400
+                    "quantidade": 440
                   }
 
             }).then( response => {
