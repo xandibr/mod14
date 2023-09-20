@@ -3,8 +3,8 @@ import contrato from '../contracts/produtos.contract'
 
 describe('Teste da Funcionalidade Produtos', () => {
      let token
-    before(() => {
-        cy.token('xandibrbr@yahoo.com.br', 'teste').then(tkn =>{ token = tkn})
+    beforeEach(() => {
+        cy.token('fulano@qa.com', 'teste').then(tkn =>{ token = tkn})
     });
 
     it('Deve validar contrato de produtos', () => {
@@ -59,6 +59,7 @@ describe('Teste da Funcionalidade Produtos', () => {
 
     it('Deve editar um produto já cadastrado', () => {
         cy.request('produtos').then(response =>{
+            let produto = `Produto EBACC ${Math.floor(Math.random() * 100000000)}`
             let id = response.body.produtos[0]._id
             cy.request({
                 method:'PUT',
@@ -66,7 +67,7 @@ describe('Teste da Funcionalidade Produtos', () => {
                 headers: {authorization: token},
                 body:
                 {
-                    "nome": "Produto EBAC 27045361",
+                    "nome": produto,
                     "preco": 470,
                     "descricao": "Produto Editado",
                     "quantidade": 440

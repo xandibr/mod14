@@ -53,3 +53,17 @@ Cypress.Commands.add('cadastrarProduto', (token, produto, preco, descricao, quan
         failOnStatusCode: false
     })
 })
+
+Cypress.Commands.add('NovoUsuario',(nome,email,senha,admin)=>{
+    cy.request({
+        method:'POST',
+        url: 'usuarios',
+        body:{
+            nome: nome,
+            email: email,
+            password: senha,
+            administrador: admin
+            
+        }
+    })
+})
